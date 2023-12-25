@@ -113,7 +113,7 @@ try:
             for j in range(ndl, n):
                 matrF[i][j] = matrE[i][j-ndl]
 
-    print('Матрица F \n')
+    print('Матрица F, с учётом преобразований \n')
     matrix(matrF)
 
     print("\n F + A =\n")
@@ -146,7 +146,7 @@ try:
     matrix(matrkF)
 
     matrresult = [[0 for i in range(n)] for j in range(n)]
-    print('\n Результат работы программы(финальное решение) \n')
+    print('\n Результат работы программы(финальное решение выражения (F+A)*AT – K * F \n')
     for i in range(n):
         for j in range(n):
             matrresult[i][j] = matrFandAT[i][j] - matrkF[i][j]
