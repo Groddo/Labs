@@ -33,7 +33,7 @@ try:
     if n % 2 != 0:
         ndll += 1
     matrA = [[random.randint(-10, 10) for i in range(n)] for j in range(n)]
-    print('\nМатрица А:')
+    print('\nМатрица А')
     matrix(matrA)
 
     matrcopy = [[elem for elem in raw] for raw in matrA]
@@ -45,7 +45,7 @@ try:
             matrB[i][j] = matrcopy[i][j]
     matrix(matrB)
 
-    print('\nПодматрица С:')
+    print('\nПодматрица С')
     matrC = [[0 for i in range(ndll)] for j in range(ndll)]
     for i in range(ndll):
         for j in range(ndl, n):
@@ -146,7 +146,7 @@ try:
     matrix(matrkF)
 
     matrresult = [[0 for i in range(n)] for j in range(n)]
-    print('\n Результат работы программы(финальное решение выражения (F+A)*AT – K * F \n')
+    print('\n Результат работы программы. Финальное решение выражения (F+A)*AT – K * F \n')
     for i in range(n):
         for j in range(n):
             matrresult[i][j] = matrFandAT[i][j] - matrkF[i][j]
