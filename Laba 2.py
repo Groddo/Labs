@@ -8,24 +8,23 @@
 
 
 import re
-with open('Numbers.txt') as file:
-    k = 0
-    while True:
-        a = file.readline()
-        if not a:
-            break
-        dop = []
-        res = re.findall(r"[+-]?[0-9]+[,.][0-9]*[^.,]", a)
-        dop.extend(res)
-        res = re.findall(r"^[,.][0-9]*\s", a)
-        dop.extend(res)
-        res = re.findall(r"\s[,.][0-9]*\s", a)
-        dop.extend(res)
-        res = re.findall(r"\s[,.][0-9]*$", a)
-        dop.extend(res)
-        if len(dop) >= 1:
-            k = 1
-            for j in dop:
-                print(j.replace(',', '.'), end=' ')
-    if k == 0:
-        print('Программа не нашла вещественные числа')
+
+
+delimiter = ' '
+correctList = []
+with open("Numbers.txt", 'r') as file:
+   for row in file:
+       list = row.split(delimiter)
+       for item in list:
+           item = item.replace(',', '.')
+           counter = item.count('.')
+           if counter == 1:
+               buffalf = re.search(r'[а-яА-яеЁa-zA-Z?&*%;$#№@"!`~_=/|]', item)
+               if buffalf == None:
+                   buff1 = re.findall(r"[+-]?[0-9]*[.,][0-9]+", item)
+                   if buff1 != []:
+                       correctList.append(buff1)
+                   buff2 = re.findall(r"[+-]?[0-9]+[.,][0-9]*", item)
+                   if buff2 != buff1 and buff2 != []:
+                       correctList.append(buff2)
+print(correctList)
