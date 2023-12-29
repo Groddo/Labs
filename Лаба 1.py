@@ -6,36 +6,33 @@
 
 #Вариант 3. #Вещественные числа. В них менять запятую на точку.
 
-##!!!! В конце выводит ошибку изза пустого массива, нужно пофиксить
+delimiter = ' '
+correctList = []
+with open("numbers.txt", 'r') as file:
+   for row in file:
+       list =row.split(delimiter)
+       for item in list:
+           checkAlphabit = 0
+           checkPoints = item.count(',')
+           checkPoints+= item.count('.')
+           for ch in range(len(item)):
+               if not item[ch].isdigit() and item[ch] != '.' and item[ch] != ',' and item[ch] != '-':
+                   checkAlphabit +=1
+               if item[ch] ==',' or item[ch] == '.':
+                   checkLeftNum = 1
+                   checkRightNum = 1
+                   if ch != 0:
+                       if item[ch-1].isdigit() or item[ch-1] == '-':
+                           checkLeftNum = 1
+                       else : checkLeftNum = 0
+                   if ch!= len(item) - 1:
+                       if item[ch+1].isdigit():
+                           checkRightNum = 1
+                       else : checkRightNum = 0
+                   if checkLeftNum == checkRightNum == 1 and checkPoints==1 and checkAlphabit==0:
 
+                       str = item.replace(',', '.')
+                       correctList.append(str)
 
-
-
-end_buff, buff, help_buff, comma, tochka = [], [], [], ',', '.'        #Конечный буффер подходящих, изменённых чисел; Рабочий буффер; Переменная для проверки условия
-filtr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', '.']
-with open('Numbers.txt') as f:
-    while True:
-        a = f.read(1)
-        if a!=' ' and a!='' and a!='\n':                #Отделяем числа друг от друга
-            buff.append(a)                              #И добавляем подходящие в рабочий буффер
-        else:
-            if (comma in buff) and (tochka in buff):
-                buff.clear()
-            elif (comma in buff) or (tochka in buff):   #Проверяем вещественное ли число в рабочем буффере
-                for i in buff:                          #Заменяем запятую на точку
-                    if i in filtr:                      #Проверяем, что символ является цифрой, запятой или точкой
-                        if i == ',' or i == '.':
-                            i = '.'
-                            help_buff.append(i)
-                            if help_buff == ['.']:
-                                help_buff.clear()       # Заполняем конечный буффер
-                            else:
-                                end_buff.append()
-                    else:
-                        help_buff.clear()
-                end_buff.append(' ')                    #Добавляем пробелы между числами
-            buff.clear()
-        if a == '':
-            break
-    end_buff[-1]=''                                     #Избавляемся от лишнего пробела в конце
-print(''.join(end_buff))
+for i in correctList:
+    print(i)
